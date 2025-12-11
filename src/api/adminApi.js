@@ -3,13 +3,13 @@ import axios from 'axios';
 
 // 🔗 기본 axios 인스턴스
 const adminApi = axios.create({
-  baseURL: '/api',
+  baseURL: '/api',  // ✔ 다시 이렇게! (상대 경로, localhost 기준)
   headers: {
     'Content-Type': 'application/json',
-    // ✅ ngrok 브라우저 경고(HTML) 우회용 헤더
     'ngrok-skip-browser-warning': 'true',
   },
 });
+
 
 // ✅ 모든 요청에 Authorization 헤더 자동 첨부
 adminApi.interceptors.request.use(
@@ -38,9 +38,6 @@ export async function fetchAdminMembers(keyword) {
   if (keyword && keyword.trim()) {
     params.keyword = keyword.trim();
   }
-
-
-  
 
   const response = await adminApi.get('/admin/members', { params });
 
@@ -118,7 +115,7 @@ export async function createAdminNotice({ title, content, type }) {
   const res = await adminApi.post('/admin/notices', {
     title,
     content,
-    type, // "ERROR" | "UPDATE" | "EMERGENCY"
+    type, // "ERROR" | "UPDATE" | "URGENT"
   });
   return res.data.data;
 }
@@ -139,8 +136,27 @@ export async function deleteAdminNotice(noticeId) {
   return res.data;
 }
 
-
-
-
+/* 📊 관리자 대시보드 통계 조회
+   GET /api/admin/dashboard
+   응답:
+   {
+     code: 0,
+     message: "...",
+     data: {
+       totalMemberCount,
+       todayNewMemberCount,
+       totalRoomCount,
+       todayNewRoomCount,
+       totalScheduleCount,
+       todayNewScheduleCount,
+       totalNoticeCount,
+       totalInconvenienceReportCount
+     }
+   }
+*/
+export async function fetchAdminDashboard() {
+  const res = await adminApi.get('/admin/dashboard');
+  return res.data.data; // 통계 data 객체만 리턴
+}
 
 export default adminApi;

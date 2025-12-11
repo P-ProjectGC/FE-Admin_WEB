@@ -6,6 +6,7 @@ import MembersView from '../views/MembersView.vue';
 import MemberDetailView from '../views/MemberDetailView.vue';
 import ReportsView from '../views/ReportsView.vue';
 import NoticesView from '../views/NoticesView.vue';
+import UsageStatusView from '../views/UsageStatusView.vue'; // 📊 이용현황 뷰
 
 const routes = [
   {
@@ -21,8 +22,9 @@ const routes = [
       { path: '', redirect: '/admin/members' },
       { path: 'members', name: 'Members', component: MembersView },
       { path: 'members/:memberId', name: 'MemberDetail', component: MemberDetailView },
-      { path: 'reports', name: 'Reports', component: ReportsView }, // 🚨 서비스 관리(신고 목록)
-      // 나중에 notices, rooms 등 추가
+      { path: 'reports', name: 'Reports', component: ReportsView },       // 신고 관리
+      { path: 'usage', name: 'UsageStatus', component: UsageStatusView }, // 이용현황 대시보드
+      { path: 'notices', name: 'Notices', component: NoticesView },       // 공지사항 관리
     ],
   },
 
@@ -30,19 +32,6 @@ const routes = [
     path: '/:pathMatch(.*)*',
     redirect: '/login',
   },
-
-  {
-  path: '/admin',
-  component: AdminLayout,
-  children: [
-    { path: '', redirect: '/admin/members' },
-    { path: 'members', name: 'Members', component: MembersView },
-    { path: 'members/:memberId', name: 'MemberDetail', component: MemberDetailView },
-    { path: 'reports', name: 'Reports', component: ReportsView },
-    { path: 'notices', name: 'Notices', component: NoticesView }, // 🔺여기 추가
-  ],
-},
-
 ];
 
 const router = createRouter({

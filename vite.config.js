@@ -13,7 +13,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://pyrological-nonsalutarily-hobert.ngrok-free.dev',
+        target: 'http://ceprj2.gachon.ac.kr:65028',
         changeOrigin: true,
         secure: false,
       },

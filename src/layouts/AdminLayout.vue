@@ -11,32 +11,60 @@
       <!-- 왼쪽 사이드바 -->
       <aside class="sidebar">
         <div class="sidebar-inner">
-          <!-- 회원 관리 -->
-          <router-link
-            to="/admin/members"
-            class="sidebar-item"
-            active-class="sidebar-item-active"
-          >
-            회원 관리
-          </router-link>
 
-          <!-- 서비스 관리: 신고 목록(/admin/reports) -->
-          <router-link
-            to="/admin/reports"
-            class="sidebar-item"
-            active-class="sidebar-item-active"
-          >
-            서비스 관리
-          </router-link>
+          <!-- 회원 관리 섹션 -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">회원 관리</div>
+            <router-link
+              to="/admin/members"
+              class="sidebar-item"
+              active-class="sidebar-item-active"
+            >
+              회원 목록
+            </router-link>
+          </div>
 
-          <!-- 시스템 관리: 공지사항(/admin/notices) -->
-          <router-link
-            to="/admin/notices"
-            class="sidebar-item"
-            active-class="sidebar-item-active"
-          >
-            시스템 관리
-          </router-link>
+          <!-- 서비스 관리 섹션 -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">서비스 관리</div>
+            <router-link
+              to="/admin/reports"
+              class="sidebar-item"
+              active-class="sidebar-item-active"
+            >
+              신고사항
+            </router-link>
+            <router-link
+              to="/admin/usage"
+              class="sidebar-item"
+              active-class="sidebar-item-active"
+            >
+              이용현황
+            </router-link>
+            <!-- 추후 모니터링 페이지 추가 예정 -->
+            <!--
+            <router-link
+              to="/admin/monitoring"
+              class="sidebar-item"
+              active-class="sidebar-item-active"
+            >
+              모니터링
+            </router-link>
+            -->
+          </div>
+
+          <!-- 시스템 관리 섹션 -->
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">시스템 관리</div>
+            <router-link
+              to="/admin/notices"
+              class="sidebar-item"
+              active-class="sidebar-item-active"
+            >
+              공지사항
+            </router-link>
+          </div>
+
         </div>
       </aside>
 
@@ -92,19 +120,35 @@
   padding: 20px 12px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
+/* 섹션 제목 */
+.sidebar-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a4a4a;
+  padding: 0 8px 6px;
+}
+
+/* 섹션 그룹 */
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 개별 메뉴 버튼 */
 .sidebar-item {
   width: 100%;
-  height: 56px;
-  border-radius: 28px;
+  height: 46px;
+  border-radius: 23px;
   border: none;
   background: #ffffff;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
   text-align: left;
-  padding-left: 24px;
+  padding-left: 20px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
   text-decoration: none;
   color: #222;
